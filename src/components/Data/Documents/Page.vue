@@ -27,7 +27,7 @@
       </empty-state>
     </div>
 
-    <div v-if="!isCollectionEmpty">
+    <div class="DocumentsPage-content" v-if="!isCollectionEmpty">
       <div class="card-panel card-header">
         <div class="DocumentsPage-filtersAndButtons row">
           <div class="col s10">
@@ -70,7 +70,7 @@
 
         <div class="row" v-show="documents.length">
 
-          <div class="col s12" v-show="currentFilter.listViewType === 'list'">
+          <div class="DocumentList-list col s12" v-show="currentFilter.listViewType === 'list'">
             <div class="collection">
               <div class="collection-item collection-transition" v-for="document in documents" :key="document.id">
                 <document-item
@@ -105,6 +105,7 @@
             <p>This feature is not yet implemented.</p>
             <p>Hold on, we'll ship it soon!</p>
           </div>
+
           <div class="DocumentList-map col s12" v-show="currentFilter.listViewType === 'map'">
             <i class="fa fa-map-marked fa-5x"></i>
             <h2>Map List view</h2>
@@ -459,7 +460,16 @@ export default {
   // @TODO Temporarily reverted
   // max-width: 1080px;
   // margin: auto;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
+
+.DocumentsPage-content {
+  flex-grow: 1;
+}
+
 .DocumentsPage-filtersAndButtons {
   margin-bottom: 0;
 }

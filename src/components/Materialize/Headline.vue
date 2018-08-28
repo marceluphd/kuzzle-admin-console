@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 .Headline {
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 
   h1 {
     margin-top: 0;

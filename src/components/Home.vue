@@ -1,5 +1,5 @@
 <template>
-  <div class="Main">
+  <div class="Home">
     <main-menu
       @environment::create="editEnvironment"
       @environment::delete="deleteEnvironment">
@@ -90,15 +90,27 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.Home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 h6 {
   margin-bottom: 40px;
 }
 
 main {
   padding-left: $sidebar-width;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   .wrapper {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 

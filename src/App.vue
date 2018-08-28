@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="KuzzleAdminConsole">
     <div v-if="$store.state.kuzzle.errorFromKuzzle">
       <error-layout>
         <kuzzle-error-page
@@ -27,7 +27,10 @@
       </login>
     </div>
 
-    <div v-show="!$store.state.kuzzle.errorFromKuzzle && $store.getters.hasEnvironment && $store.getters.isAuthenticated">
+    <div
+      class="KuzzleAdminConsole-authenticated"
+      v-show="!$store.state.kuzzle.errorFromKuzzle && $store.getters.hasEnvironment && $store.getters.isAuthenticated"
+      >
       <router-view
         @environment::create="editEnvironment"
         @environment::delete="deleteEnvironment">
@@ -67,7 +70,7 @@ window.jQuery = window.$ = require('jquery')
 require('imports-loader?$=jquery!materialize-css/dist/js/materialize')
 
 export default {
-  name: 'KuzzleBackOffice',
+  name: 'KuzzleAdminConsole',
   components: {
     KuzzleDisconnectedPage,
     ErrorLayout,
@@ -102,3 +105,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.KuzzleAdminConsole,
+.KuzzleAdminConsole-authenticated {
+  height: 100%;
+}
+</style>
+

@@ -1,20 +1,18 @@
 <template>
-  <div id="data-layout">
+  <div class="Data">
     <treeview
       :route-name="$route.name"
       :index="$route.params.index"
       :collection="$route.params.collection">
     </treeview>
-    <section>
-      <section class="view">
-        <router-view
-          v-if="routeExist"
-          :index="$route.params.index"
-          :collection="$route.params.collection">
-        </router-view>
-        <notFound v-else></notFound>
-      </section>
-    </section>
+    <div class="Data-content">
+      <router-view
+        v-if="routeExist"
+        :index="$route.params.index"
+        :collection="$route.params.collection">
+      </router-view>
+      <notFound v-else></notFound>
+    </div>
   </div>
 </template>
 
@@ -90,3 +88,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.Data {
+  height: 100%;
+}
+
+.Data-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>
