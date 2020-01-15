@@ -9,6 +9,7 @@ import collection from './modules/collection/store'
 import toaster from './modules/common/toaster/store'
 import index from './modules/index/store'
 import security from './modules/security/store'
+import server from './modules/server/store'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,8 @@ const { store, rootActionContext, moduleActionContext } = createDirectStore({
     routing,
     toaster,
     index,
-    security
+    security,
+    server
   },
   strict: process.env.NODE_ENV !== 'production'
 })

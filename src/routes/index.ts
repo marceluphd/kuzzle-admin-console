@@ -4,6 +4,7 @@ import store from '@/vuex/store'
 import { hasSecurityRights } from '../services/userAuthorization'
 import SecuritySubRoutes from './children/security'
 import DataSubRoutes from './children/data'
+import InfosSubRoutes from './children/infos'
 
 export default function createRoutes(VueRouter) {
   let router = new VueRouter(
@@ -43,6 +44,17 @@ export default function createRoutes(VueRouter) {
                 require(['../components/Data/Layout'], resolve)
               },
               children: DataSubRoutes
+            },
+            {
+              path: '/infos',
+              name: 'Infos',
+              meta: {
+                auth: true
+              },
+              component(resolve) {
+                require(['../components/Infos/Layout'], resolve)
+              },
+              children: InfosSubRoutes
             }
           ]
         },

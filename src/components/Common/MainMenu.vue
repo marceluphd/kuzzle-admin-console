@@ -39,6 +39,15 @@
           >
             <a>Security</a>
           </router-link>
+          <router-link
+            v-if="hasSecurityRights()"
+            tag="li"
+            class="nav"
+            :to="{ name: 'Infos' }"
+            active-class="active"
+          >
+            <a>Infos</a>
+          </router-link>
         </ul>
 
         <ul class="right">

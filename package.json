@@ -18,7 +18,9 @@
     "test:e2e-local": "e2eLocal=1 ./tests/e2e/run-test.sh"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.2.1",
+    "apexcharts": "^3.15.0",
+    "bootstrap": "^4.4.1",
+    "bootstrap-vue": "^2.2.0",
     "chromium": "^1.0.2",
     "commander": "^2.15.1",
     "core-js": "^3.4.3",
@@ -27,6 +29,7 @@
     "http-server": "^0.11.1",
     "serve-static": "^1.13.2",
     "vue": "^2.6.10",
+    "vue-apexcharts": "^1.5.2",
     "vue-class-component": "^7.0.2",
     "vue-kuzzle": "0.0.1",
     "vue-property-decorator": "^8.3.0",
