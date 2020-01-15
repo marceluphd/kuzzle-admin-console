@@ -43,6 +43,31 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  watch: {
+    getCpuInfos: {
+      deep: true,
+      handler() {
+        this.chartOptions.xaxis.categories = []
+        this.series = []
+        for (const [index, cpu] of this.getCpuInfos.entries()) {
+          this.chartOptions.xaxis.categories.push(`${index}`)
+          this.series.push({
+            name: cpu.model,
+            data: [cpu.speed]
+          })
+        }
+      }
+    }
+  },
+  mounted() {
+    for (const [index, cpu] of this.getCpuInfos.entries()) {
+      this.chartOptions.xaxis.categories.push(`${index}`)
+      this.series.push({
+        name: cpu.model,
+        data: [cpu.speed]
+      })
+    }
+  },
   computed: {
     ...mapGetters(['getCpuInfos']),
     getMemory() {
@@ -61,22 +86,29 @@ export default {
       )
     }
   },
-  mounted() {
-    for (const [index, cpu] of this.getCpuInfos.entries()) {
-      this.chartOptions.xaxis.categories.push(`${index}`)
-      this.series.push({
-        name: cpu.model,
-        data: [cpu.speed]
-      })
-    }
-  },
   data() {
     return {
       series: [],
       chartOptions: {
+        legend: {
+          show: false
+        },
         chart: {
           height: 350,
-          type: 'bar'
+          type: 'bar',
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 800,
+            animateGradually: {
+              enabled: true,
+              delay: 150
+            },
+            dynamicAnimation: {
+              enabled: true,
+              speed: 350
+            }
+          }
         },
         plotOptions: {
           bar: {
@@ -86,7 +118,7 @@ export default {
           }
         },
         dataLabels: {
-          enabled: true,
+          enabled: false,
           formatter: function(val) {
             return val + 'Mhz'
           },
@@ -97,6 +129,15 @@ export default {
           }
         },
         xaxis: {
+          title: {
+            text: 'CPU cores'
+          },
+          labels: {
+            show: true,
+            formatter: function(val) {
+              return `${parseInt(val) + 1}`
+            }
+          },
           categories: [],
           crosshairs: {
             fill: {
@@ -109,11 +150,10 @@ export default {
                 opacityTo: 0.5
               }
             }
-          },
-          tooltip: {
-            enabled: true,
-            offsetY: 20
           }
+        },
+        tooltip: {
+          enabled: false
         },
         fill: {
           gradient: {
@@ -128,6 +168,11 @@ export default {
           }
         },
         yaxis: {
+          title: {
+            text: 'Frequency (Mhz)'
+          },
+          min: 0,
+          max: 7000,
           axisBorder: {
             show: false
           },
@@ -135,9 +180,9 @@ export default {
             show: false
           },
           labels: {
-            show: false,
+            show: true,
             formatter: function(val) {
-              return val + 'Mhz'
+              return val
             }
           }
         }

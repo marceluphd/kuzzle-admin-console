@@ -60,8 +60,9 @@ export default {
   },
   watch: {},
   async mounted() {
-    await this.$store.dispatch(types.FETCH_INFOS)
-    console.log(this.$store.state.server.infos)
+    setInterval(async () => {
+      await this.$store.dispatch(types.FETCH_INFOS)
+    }, 1000)
   },
   methods: {}
 }
