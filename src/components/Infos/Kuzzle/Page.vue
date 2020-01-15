@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import GenericCard from './GenericCard'
 import CPUCard from './CPUCard'
 import DiskCard from './DiskCard'
